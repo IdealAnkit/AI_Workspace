@@ -20,16 +20,16 @@ Project Status:
 🟩 In Progress
 
 Current Phase:
-Phase 2 — Authentication (Complete)
+Phase 3 — Enterprise Document Management Foundation (Complete)
 
 Current Module:
-Authentication
+Document Management
 
 Current Task:
-Phase 2 authentication complete. Ready to begin Phase 3 — Document Management.
+Phase 3 document platform hardening complete. Ready to begin Phase 4 — RAG Pipeline.
 
 Next Task:
-Phase 3 — Document Management.
+Phase 4 — RAG Pipeline.
 
 ---
 
@@ -127,11 +127,13 @@ Phase 3 — Document Management.
 
 # Phase 3 — Document Management
 
-* [ ] File upload
-* [ ] File storage
-* [ ] Metadata storage
-* [ ] Document listing
-* [ ] Delete document
+* ✅ File upload (authenticated multipart API)
+* ✅ File storage (MinIO through StorageProvider)
+* ✅ Metadata storage (PostgreSQL document model)
+* ✅ Document listing (owner-scoped pagination)
+* ✅ Delete document (provider bytes + metadata)
+* ✅ Lifecycle statuses, soft delete, audit/version/folder readiness
+* ✅ StorageManager, document event interfaces, signed downloads, and API/repository tests
 * [ ] Rename document
 * [ ] File preview
 
@@ -227,7 +229,8 @@ Phase 3 — Document Management.
 
 Phase 2 (Authentication) is complete.
 Frontend registration is intentionally not implemented because it is outside the requested Phase 2 frontend scope.
-Next session should begin Phase 3 — Document Management.
+Phase 3 document management foundation and hardening are complete. Rename and preview remain intentionally deferred.
+Next session should begin Phase 4 — RAG Pipeline.
 
 ---
 
@@ -256,6 +259,8 @@ None.
 * ✅ Phase 1.5 — Ruff + Black + isort config (pyproject.toml); Prettier config
 * ✅ Phase 2 — Authentication (users, RBAC, bcrypt, JWT access/refresh tokens, protected API, admin seeder)
 * ✅ Phase 2 — Frontend authentication foundation (login, protected route, Zustand, Axios refresh handling)
+* ✅ Phase 3 — Enterprise document management foundation (owner-scoped uploads, MinIO storage abstraction, metadata, download, deletion)
+* ✅ Phase 3 — Document platform hardening (lifecycle, soft delete, StorageManager, signed URLs, audit/version readiness, tests)
 
 ---
 

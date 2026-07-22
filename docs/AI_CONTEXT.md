@@ -41,15 +41,15 @@ Always preserve existing information unless it has become outdated.
 
 ### Current Phase
 
-Phase 2 — Authentication (Complete)
+Phase 3 — Enterprise Document Management Foundation (Complete)
 
 ### Current Module
 
-Authentication
+Document Management
 
 ### Current Objective
 
-Phase 2 authentication is complete. The next planned phase is document management.
+Phase 3 document platform hardening is complete. The next planned phase is RAG document processing.
 
 ---
 
@@ -96,6 +96,8 @@ Phase 1.5 backend infrastructure hardening is complete.
 
 Phase 2 authentication is complete.
 
+Phase 3 enterprise document management foundation and hardening are complete.
+
 Backend:
 - FastAPI initialized with app factory pattern
 - Layered architecture: api/core/config/database/models/schemas/services/repositories/middleware/utils
@@ -115,6 +117,7 @@ Backend:
 - Code quality: pyproject.toml (Ruff + Black + isort); frontend .prettierrc
 - Authentication: User and RefreshSession models; Alembic migration; bcrypt password hashing; signed access/refresh JWTs; rotating, revocable refresh sessions; register/login/refresh/logout/me endpoints; HTTP bearer OpenAPI security scheme; reusable current-user/admin dependencies; and an interactive first-admin seeder.
 - Security: JWT values are loaded from Settings; production rejects the documented default SECRET_KEY; Swagger is available in development only.
+- Documents: isolated app.modules.documents feature module with document metadata model, owner-scoped repository/service/API, multipart validation, deterministic private storage keys, a StorageManager resolving StorageProviders, MinIO implementation, document events, lifecycle statuses, soft delete/audit/version/folder-readiness fields, signed-download support, migrations, and provider-independent tests. No parsing, OCR, chunking, embeddings, vector operations, or background processing is included.
 
 Frontend:
 - React + TypeScript + Vite initialized
@@ -142,7 +145,7 @@ None.
 
 ## Next Development Goal
 
-Phase 3 — Document Management.
+Phase 4 — Production-ready RAG implementation.
 
 ---
 

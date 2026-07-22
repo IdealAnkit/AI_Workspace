@@ -13,7 +13,7 @@ Precedence (highest → lowest):
 from functools import lru_cache
 from typing import List
 
-from pydantic import model_validator
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -94,7 +94,21 @@ class Settings(BaseSettings):
     MINIO_ACCESS_KEY: str = "minioadmin"
     MINIO_SECRET_KEY: str = "minioadmin"
     MINIO_BUCKET_NAME: str = "ai-workspace"
+    MINIO_BUCKET: str | None = None
     MINIO_SECURE: bool = False
+
+    @property
+    def minio_bucket(self) -> str:
+        """Prefer MINIO_BUCKET while retaining the Phase 3 MINIO_BUCKET_NAME setting."""
+        return self.MINIO_BUCKET or self.MINIO_BUCKET_NAME
+
+    # -------------------------------------------------------------------------
+    # Documents
+    # -------------------------------------------------------------------------
+    DOCUMENT_STORAGE_PROVIDER: str = "minio"
+    DOCUMENT_MAX_FILE_SIZE_BYTES: int = Field(default=25 * 1024 * 1024, gt=0)
+    DOCUMENT_DELETE_STORAGE_OBJECTS: bool = False
+    SIGNED_URL_EXPIRATION: int = Field(default=900, gt=0, le=604800)
 
     # -------------------------------------------------------------------------
     # Vector Database — Qdrant

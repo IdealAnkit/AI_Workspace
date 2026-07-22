@@ -23,6 +23,7 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from app.config.settings import get_settings
 from app.database.base import Base
 from app.models import User  # noqa: F401
+from app.modules.documents.models import Document  # noqa: F401
 
 # Import all models here so Alembic can detect them for autogeneration.
 # Add new model imports as you create them in later phases.
