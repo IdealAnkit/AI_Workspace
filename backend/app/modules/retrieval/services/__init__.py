@@ -1,0 +1,2 @@
+from app.modules.retrieval.services.retrieval_service import RetrievalService
+__all__ = ["RetrievalService"]

@@ -37,6 +37,12 @@ from app.modules.indexing.models import (  # noqa: F401
     EmbeddingLog,
     IndexMetadata,
 )
+from app.modules.retrieval.models import (  # noqa: F401
+    QueryHistory,
+    RetrievalLog,
+    RetrievalSession,
+    SearchAnalytics,
+)
 
 # Import all models here so Alembic can detect them for autogeneration.
 # Add new model imports as you create them in later phases.

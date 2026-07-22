@@ -139,6 +139,18 @@ class Settings(BaseSettings):
     INDEX_BATCH_SIZE: int = Field(default=32, gt=0)
 
     # -------------------------------------------------------------------------
+    # Retrieval (no LLM or answer generation)
+    # -------------------------------------------------------------------------
+    DEFAULT_TOP_K: int = Field(default=8, gt=0)
+    MAX_TOP_K: int = Field(default=50, gt=0)
+    DEFAULT_SCORE_THRESHOLD: float = Field(default=0.0, ge=0, le=1)
+    ENABLE_HYBRID_SEARCH: bool = True
+    SEMANTIC_WEIGHT: float = Field(default=0.7, ge=0)
+    KEYWORD_WEIGHT: float = Field(default=0.3, ge=0)
+    MAX_CONTEXT_TOKENS: int = Field(default=4000, gt=0)
+    DEFAULT_RANKER: str = "default_score"
+
+    # -------------------------------------------------------------------------
     # LLM Provider
     # Supported: openai | gemini | groq | openrouter | ollama
     # -------------------------------------------------------------------------
@@ -164,6 +176,8 @@ class Settings(BaseSettings):
             raise ValueError("SECRET_KEY must be set to a unique value in production.")
         if self.DEFAULT_CHUNK_OVERLAP >= self.DEFAULT_CHUNK_SIZE:
             raise ValueError("DEFAULT_CHUNK_OVERLAP must be smaller than DEFAULT_CHUNK_SIZE.")
+        if self.SEMANTIC_WEIGHT + self.KEYWORD_WEIGHT <= 0:
+            raise ValueError("At least one retrieval weight must be positive.")
         return self
 
 

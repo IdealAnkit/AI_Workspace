@@ -20,16 +20,16 @@ Project Status:
 🟩 In Progress
 
 Current Phase:
-Phase 5 — Enterprise Embedding & Indexing Foundation (Complete)
+Phase 6 — Retrieval Engine (Complete)
 
 Current Module:
-Indexing
+Retrieval
 
 Current Task:
-Phase 5 embedding and indexing foundation complete. Ready to begin Phase 6 — Retrieval Engine.
+Phase 6 retrieval engine complete. Ready to begin Phase 7 — AI Chat.
 
 Next Task:
-Phase 6 — Retrieval Engine.
+Phase 7 — AI Chat.
 
 ---
 
@@ -159,6 +159,14 @@ Phase 6 — Retrieval Engine.
 * ✅ Owner-scoped read-only index metadata API
 * ✅ Indexing migration and offline tests
 
+## Retrieval Engine
+
+* ✅ Semantic, keyword, and weighted hybrid retrieval abstractions
+* ✅ Owner/workspace/document/metadata/language/date/tag filtering
+* ✅ Score ranking, duplicate removal, context budgeting, and citation-ready chunks
+* ✅ Retrieval query/history/log/analytics persistence and authenticated APIs
+* ✅ Retrieval migration and offline tests
+
 * [ ] Document loaders
 * [ ] Text chunking
 * [ ] Embeddings
@@ -250,7 +258,8 @@ Frontend registration is intentionally not implemented because it is outside the
 Phase 3 document management foundation and hardening are complete. Rename and preview remain intentionally deferred.
 Phase 4 document processing foundation is complete. It deliberately excludes OCR, chunking, embeddings, vector indexing, and background workers.
 Phase 5 enterprise embedding and indexing foundation is complete. It deliberately excludes retrieval, RAG answers, LLM calls, and background workers.
-Next session should begin Phase 6 — Retrieval Engine.
+Phase 6 retrieval engine is complete. It deliberately excludes all LLM calls and answer generation.
+Next session should begin Phase 7 — AI Chat.
 
 ---
 
@@ -283,6 +292,7 @@ None.
 * ✅ Phase 3 — Document platform hardening (lifecycle, soft delete, StorageManager, signed URLs, audit/version readiness, tests)
 * ✅ Phase 4 — Document processing foundation (parser registry, normalized extraction, metadata, lifecycle orchestration, durable processing state)
 * ✅ Phase 5 — Enterprise embedding and indexing foundation (versioned chunks, deterministic embeddings, Qdrant abstraction, index lifecycle)
+* ✅ Phase 6 — Retrieval engine (semantic/keyword/hybrid retrieval, filters, ranking, context, citations, analytics)
 
 ---
 
