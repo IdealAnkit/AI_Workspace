@@ -20,16 +20,16 @@ Project Status:
 🟩 In Progress
 
 Current Phase:
-Phase 6 — Retrieval Engine (Complete)
+Phase 4 — Production-ready RAG (Complete)
 
 Current Module:
-Retrieval
+AI Chat Engine
 
 Current Task:
-Phase 6 retrieval engine complete. Ready to begin Phase 7 — AI Chat.
+Production-ready RAG is complete: retrieval and chat orchestration are available with an offline mock provider.
 
 Next Task:
-Phase 7 — AI Chat.
+Phase 5 — Workspace and AI productivity features.
 
 ---
 
@@ -167,6 +167,13 @@ Phase 7 — AI Chat.
 * ✅ Retrieval query/history/log/analytics persistence and authenticated APIs
 * ✅ Retrieval migration and offline tests
 
+## AI Chat Engine
+
+* ✅ Conversation, message, token, feedback, log, metadata, and statistics persistence
+* ✅ Prompt builder, token-aware conversation history, deterministic mock provider, and citation passthrough
+* ✅ Authenticated conversation CRUD, message generation, and SSE streaming endpoints
+* ✅ Chat migration and offline tests
+
 * [ ] Document loaders
 * [ ] Text chunking
 * [ ] Embeddings
@@ -259,7 +266,8 @@ Phase 3 document management foundation and hardening are complete. Rename and pr
 Phase 4 document processing foundation is complete. It deliberately excludes OCR, chunking, embeddings, vector indexing, and background workers.
 Phase 5 enterprise embedding and indexing foundation is complete. It deliberately excludes retrieval, RAG answers, LLM calls, and background workers.
 Phase 6 retrieval engine is complete. It deliberately excludes all LLM calls and answer generation.
-Next session should begin Phase 7 — AI Chat.
+AI Chat Engine is complete using the offline mock provider; no external LLM integration has been added.
+Next session should begin Phase 5 — Workspace and AI productivity features.
 
 ---
 
@@ -293,6 +301,7 @@ None.
 * ✅ Phase 4 — Document processing foundation (parser registry, normalized extraction, metadata, lifecycle orchestration, durable processing state)
 * ✅ Phase 5 — Enterprise embedding and indexing foundation (versioned chunks, deterministic embeddings, Qdrant abstraction, index lifecycle)
 * ✅ Phase 6 — Retrieval engine (semantic/keyword/hybrid retrieval, filters, ranking, context, citations, analytics)
+* ✅ Phase 4 — Production-ready RAG (retrieval engine plus chat orchestration, prompt building, SSE, citations, and token accounting)
 
 ---
 

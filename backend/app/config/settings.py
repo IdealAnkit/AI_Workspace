@@ -154,8 +154,15 @@ class Settings(BaseSettings):
     # LLM Provider
     # Supported: openai | gemini | groq | openrouter | ollama
     # -------------------------------------------------------------------------
-    LLM_PROVIDER: str = "openai"
-    LLM_MODEL: str = "gpt-4o-mini"
+    LLM_PROVIDER: str = "mock"
+    LLM_MODEL: str = "mock-chat-v1"
+    LLM_MAX_TOKENS: int = Field(default=4096, gt=0)
+    LLM_TEMPERATURE: float = Field(default=0.0, ge=0, le=2)
+    LLM_TOP_P: float = Field(default=1.0, gt=0, le=1)
+    ENABLE_STREAMING: bool = True
+    ENABLE_CHAT_HISTORY: bool = True
+    MAX_HISTORY_MESSAGES: int = Field(default=12, ge=0)
+    SYSTEM_PROMPT: str = "Answer using the supplied retrieval context. State uncertainty when context is insufficient."
     OPENAI_API_KEY: str = ""
     GOOGLE_API_KEY: str = ""
     GROQ_API_KEY: str = ""

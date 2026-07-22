@@ -43,6 +43,9 @@ from app.modules.retrieval.models import (  # noqa: F401
     RetrievalSession,
     SearchAnalytics,
 )
+from app.modules.chat.models import (  # noqa: F401
+    ChatFeedback, ChatLog, Conversation, ConversationMetadata, ConversationStatistics, Message, TokenUsage,
+)
 
 # Import all models here so Alembic can detect them for autogeneration.
 # Add new model imports as you create them in later phases.

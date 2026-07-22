@@ -11,6 +11,7 @@ from app.modules.documents.api.router import router as documents_router
 from app.modules.document_processing.api.router import document_processing_router, processing_router
 from app.modules.indexing.api.router import router as indexing_router
 from app.modules.retrieval.api.router import router as retrieval_router
+from app.modules.chat.api.router import router as chat_router
 
 api_router = APIRouter()
 
@@ -21,3 +22,4 @@ api_router.include_router(processing_router, prefix="/processing", tags=["Docume
 api_router.include_router(document_processing_router, prefix="/documents", tags=["Document Processing"])
 api_router.include_router(indexing_router, prefix="/indexing", tags=["Indexing"])
 api_router.include_router(retrieval_router, prefix="/retrieval", tags=["Retrieval"])
+api_router.include_router(chat_router, prefix="/chat", tags=["Chat"])

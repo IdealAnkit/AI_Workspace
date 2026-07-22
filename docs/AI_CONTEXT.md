@@ -41,15 +41,15 @@ Always preserve existing information unless it has become outdated.
 
 ### Current Phase
 
-Phase 6 — Retrieval Engine (Complete)
+Phase 4 — Production-ready RAG (Complete)
 
 ### Current Module
 
-Retrieval
+AI Chat Engine
 
 ### Current Objective
 
-Phase 6 retrieval engine is complete. The next planned phase is AI chat.
+Project.md Phase 4 Production-ready RAG is complete. The next planned phase is workspace and AI productivity features.
 
 ---
 
@@ -104,6 +104,8 @@ Phase 5 enterprise embedding and indexing foundation is complete.
 
 Phase 6 retrieval engine is complete.
 
+AI Chat Engine is complete with an offline mock provider.
+
 Backend:
 - FastAPI initialized with app factory pattern
 - Layered architecture: api/core/config/database/models/schemas/services/repositories/middleware/utils
@@ -127,6 +129,7 @@ Backend:
 - Document processing: isolated app.modules.document_processing feature module with parser interfaces and registry for PDF, DOCX, TXT, and Markdown; provider-neutral source reading; Unicode-safe normalization; metadata enrichment; durable processing jobs, logs, errors, and normalized results; synchronous consumption of upload events; and owner-scoped read-only processing APIs. OCR, chunking, embeddings, vector operations, and background workers remain intentionally excluded.
 - Indexing: isolated app.modules.indexing feature module with immutable versioned chunks, configurable fixed/recursive/Markdown chunkers, a deterministic offline embedding provider, provider-neutral vector-store contract with a Qdrant adapter, durable indexing jobs/logs/errors/index metadata, and synchronous consumption of processing-completed events. Retrieval and all LLM/RAG features remain excluded.
 - Retrieval: isolated app.modules.retrieval feature module with normalized queries; semantic, keyword, and weighted hybrid retrievers; owner/workspace/metadata filters; score ranking; duplicate-aware context construction; citation-ready chunks; and durable query history/analytics. It performs retrieval only and never calls an LLM or generates an answer.
+- Chat: isolated app.modules.chat feature module with conversation/message persistence, token accounting, prompt construction, recent-history memory, citation passthrough, SSE streaming, and provider abstractions. The sole provider is deterministic MockLLMProvider; no external LLM integration is implemented.
 
 Frontend:
 - React + TypeScript + Vite initialized
@@ -154,7 +157,7 @@ None.
 
 ## Next Development Goal
 
-Phase 7 — AI Chat (prompt composition and answer generation over retrieval-ready context).
+Phase 5 — Workspace and AI productivity features.
 
 ---
 
