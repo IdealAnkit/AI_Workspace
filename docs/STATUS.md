@@ -20,16 +20,16 @@ Project Status:
 🟩 In Progress
 
 Current Phase:
-Phase 3 — Enterprise Document Management Foundation (Complete)
+Phase 5 — Enterprise Embedding & Indexing Foundation (Complete)
 
 Current Module:
-Document Management
+Indexing
 
 Current Task:
-Phase 3 document platform hardening complete. Ready to begin Phase 4 — RAG Pipeline.
+Phase 5 embedding and indexing foundation complete. Ready to begin Phase 6 — Retrieval Engine.
 
 Next Task:
-Phase 4 — RAG Pipeline.
+Phase 6 — Retrieval Engine.
 
 ---
 
@@ -141,6 +141,24 @@ Phase 4 — RAG Pipeline.
 
 # Phase 4 — RAG Pipeline
 
+## Document Processing Foundation
+
+* ✅ Parser abstraction and registry
+* ✅ PDF, DOCX, TXT, and Markdown text extraction
+* ✅ Unicode-safe normalization and metadata enrichment
+* ✅ Synchronous upload-event orchestration with durable jobs, logs, errors, and results
+* ✅ Owner-scoped processing status APIs
+* ✅ Processing migration and mock-backed tests
+
+## Enterprise Embedding & Indexing Foundation
+
+* ✅ Immutable, versioned chunks with configurable fixed, recursive, and Markdown-aware strategies
+* ✅ Deterministic offline embedding-provider abstraction and batch processing
+* ✅ Provider-neutral vector-store interface with Qdrant adapter
+* ✅ Synchronous processing-completed indexing events and durable index jobs/logs/errors/metadata
+* ✅ Owner-scoped read-only index metadata API
+* ✅ Indexing migration and offline tests
+
 * [ ] Document loaders
 * [ ] Text chunking
 * [ ] Embeddings
@@ -230,7 +248,9 @@ Phase 4 — RAG Pipeline.
 Phase 2 (Authentication) is complete.
 Frontend registration is intentionally not implemented because it is outside the requested Phase 2 frontend scope.
 Phase 3 document management foundation and hardening are complete. Rename and preview remain intentionally deferred.
-Next session should begin Phase 4 — RAG Pipeline.
+Phase 4 document processing foundation is complete. It deliberately excludes OCR, chunking, embeddings, vector indexing, and background workers.
+Phase 5 enterprise embedding and indexing foundation is complete. It deliberately excludes retrieval, RAG answers, LLM calls, and background workers.
+Next session should begin Phase 6 — Retrieval Engine.
 
 ---
 
@@ -261,6 +281,8 @@ None.
 * ✅ Phase 2 — Frontend authentication foundation (login, protected route, Zustand, Axios refresh handling)
 * ✅ Phase 3 — Enterprise document management foundation (owner-scoped uploads, MinIO storage abstraction, metadata, download, deletion)
 * ✅ Phase 3 — Document platform hardening (lifecycle, soft delete, StorageManager, signed URLs, audit/version readiness, tests)
+* ✅ Phase 4 — Document processing foundation (parser registry, normalized extraction, metadata, lifecycle orchestration, durable processing state)
+* ✅ Phase 5 — Enterprise embedding and indexing foundation (versioned chunks, deterministic embeddings, Qdrant abstraction, index lifecycle)
 
 ---
 

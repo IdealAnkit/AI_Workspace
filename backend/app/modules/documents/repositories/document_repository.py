@@ -15,6 +15,14 @@ class DocumentRepository:
     def __init__(self, session: AsyncSession) -> None:
         self.session = session
 
+    async def get_by_id(self, document_id: UUID, *, include_deleted: bool = False) -> Document | None:
+        """Retrieve metadata for internal modules without bypassing soft deletion."""
+        conditions = [Document.id == document_id]
+        if not include_deleted:
+            conditions.append(Document.is_deleted.is_(False))
+        result = await self.session.execute(select(Document).where(*conditions))
+        return result.scalar_one_or_none()
+
     async def get_by_id_for_owner(
         self, document_id: UUID, owner_id: UUID, *, include_deleted: bool = False
     ) -> Document | None:

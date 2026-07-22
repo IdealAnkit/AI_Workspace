@@ -18,7 +18,11 @@ from app.modules.documents.events.base import (
     DocumentEventPublisher,
     DocumentUploadedEvent,
 )
-from app.modules.documents.models.document import Document, DocumentStatus
+from app.modules.documents.models.document import (
+    ALLOWED_DOCUMENT_STATUS_TRANSITIONS,
+    Document,
+    DocumentStatus,
+)
 from app.modules.documents.repositories.document_repository import DocumentRepository
 from app.modules.documents.storage.base import StorageDownload, StorageProviderError
 from app.modules.documents.storage.manager import StorageManager
@@ -33,15 +37,6 @@ SUPPORTED_DOCUMENT_TYPES: dict[str, set[str]] = {
     "text/x-markdown": {".md", ".markdown"},
 }
 UPLOAD_READ_CHUNK_SIZE = 1024 * 1024
-ALLOWED_STATUS_TRANSITIONS: dict[DocumentStatus, set[DocumentStatus]] = {
-    DocumentStatus.UPLOADING: {DocumentStatus.STORED, DocumentStatus.FAILED, DocumentStatus.DELETED},
-    DocumentStatus.STORED: {DocumentStatus.QUEUED, DocumentStatus.FAILED, DocumentStatus.DELETED},
-    DocumentStatus.QUEUED: {DocumentStatus.PROCESSING, DocumentStatus.FAILED, DocumentStatus.DELETED},
-    DocumentStatus.PROCESSING: {DocumentStatus.READY, DocumentStatus.FAILED, DocumentStatus.DELETED},
-    DocumentStatus.READY: {DocumentStatus.QUEUED, DocumentStatus.DELETED},
-    DocumentStatus.FAILED: {DocumentStatus.QUEUED, DocumentStatus.DELETED},
-    DocumentStatus.DELETED: set(),
-}
 logger = get_logger(__name__)
 
 
@@ -211,7 +206,7 @@ class DocumentService:
         """Validate and persist a future ingestion lifecycle transition."""
         document = await self.get(document_id, owner_id)
         current_status = DocumentStatus(document.status)
-        if target_status not in ALLOWED_STATUS_TRANSITIONS[current_status]:
+        if target_status not in ALLOWED_DOCUMENT_STATUS_TRANSITIONS[current_status]:
             raise ValidationException(
                 message=f"Invalid document status transition: {current_status.value} to {target_status.value}."
             )

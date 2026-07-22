@@ -41,15 +41,15 @@ Always preserve existing information unless it has become outdated.
 
 ### Current Phase
 
-Phase 3 — Enterprise Document Management Foundation (Complete)
+Phase 5 — Enterprise Embedding & Indexing Foundation (Complete)
 
 ### Current Module
 
-Document Management
+Indexing
 
 ### Current Objective
 
-Phase 3 document platform hardening is complete. The next planned phase is RAG document processing.
+Phase 5 enterprise embedding and indexing foundation is complete. The next planned phase is the retrieval engine.
 
 ---
 
@@ -98,6 +98,10 @@ Phase 2 authentication is complete.
 
 Phase 3 enterprise document management foundation and hardening are complete.
 
+Phase 4 document processing foundation is complete.
+
+Phase 5 enterprise embedding and indexing foundation is complete.
+
 Backend:
 - FastAPI initialized with app factory pattern
 - Layered architecture: api/core/config/database/models/schemas/services/repositories/middleware/utils
@@ -117,7 +121,9 @@ Backend:
 - Code quality: pyproject.toml (Ruff + Black + isort); frontend .prettierrc
 - Authentication: User and RefreshSession models; Alembic migration; bcrypt password hashing; signed access/refresh JWTs; rotating, revocable refresh sessions; register/login/refresh/logout/me endpoints; HTTP bearer OpenAPI security scheme; reusable current-user/admin dependencies; and an interactive first-admin seeder.
 - Security: JWT values are loaded from Settings; production rejects the documented default SECRET_KEY; Swagger is available in development only.
-- Documents: isolated app.modules.documents feature module with document metadata model, owner-scoped repository/service/API, multipart validation, deterministic private storage keys, a StorageManager resolving StorageProviders, MinIO implementation, document events, lifecycle statuses, soft delete/audit/version/folder-readiness fields, signed-download support, migrations, and provider-independent tests. No parsing, OCR, chunking, embeddings, vector operations, or background processing is included.
+- Documents: isolated app.modules.documents feature module with document metadata model, owner-scoped repository/service/API, multipart validation, deterministic private storage keys, a StorageManager resolving StorageProviders, MinIO implementation, document events, lifecycle statuses, soft delete/audit/version/folder-readiness fields, signed-download support, migrations, and provider-independent tests. Parsing is delegated to the separate document-processing module; OCR, chunking, embeddings, vector operations, and background processing remain excluded.
+- Document processing: isolated app.modules.document_processing feature module with parser interfaces and registry for PDF, DOCX, TXT, and Markdown; provider-neutral source reading; Unicode-safe normalization; metadata enrichment; durable processing jobs, logs, errors, and normalized results; synchronous consumption of upload events; and owner-scoped read-only processing APIs. OCR, chunking, embeddings, vector operations, and background workers remain intentionally excluded.
+- Indexing: isolated app.modules.indexing feature module with immutable versioned chunks, configurable fixed/recursive/Markdown chunkers, a deterministic offline embedding provider, provider-neutral vector-store contract with a Qdrant adapter, durable indexing jobs/logs/errors/index metadata, and synchronous consumption of processing-completed events. Retrieval and all LLM/RAG features remain excluded.
 
 Frontend:
 - React + TypeScript + Vite initialized
@@ -145,7 +151,7 @@ None.
 
 ## Next Development Goal
 
-Phase 4 — Production-ready RAG implementation.
+Phase 6 — Retrieval Engine (semantic, keyword, and hybrid retrieval over indexed chunks).
 
 ---
 

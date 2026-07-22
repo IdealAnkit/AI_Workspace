@@ -1,6 +1,7 @@
 """In-process event contracts reserved for future document ingestion infrastructure."""
 
 from abc import ABC, abstractmethod
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID
@@ -38,3 +39,17 @@ class NoOpDocumentEventPublisher(DocumentEventPublisher):
 
     async def publish(self, event: DocumentUploadedEvent | DocumentDeletedEvent) -> None:
         return None
+
+
+DocumentEventHandler = Callable[[DocumentUploadedEvent | DocumentDeletedEvent], Awaitable[None]]
+
+
+class SynchronousDocumentEventPublisher(DocumentEventPublisher):
+    """Dispatch document events in-process; replaceable by a worker transport later."""
+
+    def __init__(self, handlers: list[DocumentEventHandler] | None = None) -> None:
+        self.handlers = handlers or []
+
+    async def publish(self, event: DocumentUploadedEvent | DocumentDeletedEvent) -> None:
+        for handler in self.handlers:
+            await handler(event)

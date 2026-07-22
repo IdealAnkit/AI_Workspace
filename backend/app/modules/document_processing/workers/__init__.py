@@ -1,0 +1,1 @@
+"""Future processing-worker contracts."""

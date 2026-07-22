@@ -25,6 +25,17 @@ class DocumentStatus(str, Enum):
     DELETED = "deleted"
 
 
+ALLOWED_DOCUMENT_STATUS_TRANSITIONS: dict[DocumentStatus, set[DocumentStatus]] = {
+    DocumentStatus.UPLOADING: {DocumentStatus.STORED, DocumentStatus.FAILED, DocumentStatus.DELETED},
+    DocumentStatus.STORED: {DocumentStatus.QUEUED, DocumentStatus.FAILED, DocumentStatus.DELETED},
+    DocumentStatus.QUEUED: {DocumentStatus.PROCESSING, DocumentStatus.FAILED, DocumentStatus.DELETED},
+    DocumentStatus.PROCESSING: {DocumentStatus.READY, DocumentStatus.FAILED, DocumentStatus.DELETED},
+    DocumentStatus.READY: {DocumentStatus.QUEUED, DocumentStatus.DELETED},
+    DocumentStatus.FAILED: {DocumentStatus.QUEUED, DocumentStatus.DELETED},
+    DocumentStatus.DELETED: set(),
+}
+
+
 class Document(Base):
     """Metadata for a file owned by one authenticated user."""
 

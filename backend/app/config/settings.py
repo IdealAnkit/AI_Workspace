@@ -111,10 +111,32 @@ class Settings(BaseSettings):
     SIGNED_URL_EXPIRATION: int = Field(default=900, gt=0, le=604800)
 
     # -------------------------------------------------------------------------
+    # Document Processing (synchronous foundation; worker transport comes later)
+    # -------------------------------------------------------------------------
+    DOCUMENT_PROCESSING_ENABLED: bool = True
+    DOCUMENT_PROCESSING_MAX_CONTENT_BYTES: int = Field(default=25 * 1024 * 1024, gt=0)
+
+    # -------------------------------------------------------------------------
     # Vector Database — Qdrant
     # -------------------------------------------------------------------------
     QDRANT_HOST: str = "localhost"
     QDRANT_PORT: int = 6333
+    QDRANT_URL: str = "http://localhost:6333"
+    QDRANT_API_KEY: str = ""
+    QDRANT_COLLECTION: str = "ai_workspace_documents"
+
+    # -------------------------------------------------------------------------
+    # Indexing (offline deterministic embedding foundation)
+    # -------------------------------------------------------------------------
+    INDEXING_ENABLED: bool = True
+    EMBEDDING_PROVIDER: str = "deterministic"
+    EMBEDDING_MODEL: str = "deterministic-v1"
+    EMBEDDING_BATCH_SIZE: int = Field(default=32, gt=0)
+    EMBEDDING_DIMENSIONS: int = Field(default=128, gt=0)
+    DEFAULT_CHUNK_SIZE: int = Field(default=1200, gt=0)
+    DEFAULT_CHUNK_OVERLAP: int = Field(default=200, ge=0)
+    VECTOR_STORE_PROVIDER: str = "qdrant"
+    INDEX_BATCH_SIZE: int = Field(default=32, gt=0)
 
     # -------------------------------------------------------------------------
     # LLM Provider
@@ -140,6 +162,8 @@ class Settings(BaseSettings):
         """Prevent the documented development secret from reaching production."""
         if self.is_production and self.SECRET_KEY == "change-me-in-production-use-a-long-random-string":
             raise ValueError("SECRET_KEY must be set to a unique value in production.")
+        if self.DEFAULT_CHUNK_OVERLAP >= self.DEFAULT_CHUNK_SIZE:
+            raise ValueError("DEFAULT_CHUNK_OVERLAP must be smaller than DEFAULT_CHUNK_SIZE.")
         return self
 
 

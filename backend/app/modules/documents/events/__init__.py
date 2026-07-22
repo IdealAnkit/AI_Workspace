@@ -5,6 +5,7 @@ from app.modules.documents.events.base import (
     DocumentEventPublisher,
     DocumentUploadedEvent,
     NoOpDocumentEventPublisher,
+    SynchronousDocumentEventPublisher,
 )
 
 __all__ = [
@@ -12,4 +13,5 @@ __all__ = [
     "DocumentEventPublisher",
     "DocumentUploadedEvent",
     "NoOpDocumentEventPublisher",
+    "SynchronousDocumentEventPublisher",
 ]
